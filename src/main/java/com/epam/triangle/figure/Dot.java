@@ -1,13 +1,14 @@
 package com.epam.triangle.figure;
 
-
+import java.util.Objects;
 
 public class Dot {
     private double x;
     private double y;
 
-    public Dot(){
-
+    public Dot(double x, double y) {
+        this.x = x;
+        this.y = y;
     }
 
     public double getX() {
@@ -27,23 +28,25 @@ public class Dot {
     }
 
     @Override
-    public int hashCode() {
-        return 125/(int)getX()+10*(int)getY();
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Dot dot = (Dot) o;
+        return Double.compare(dot.x, x) == 0 &&
+                Double.compare(dot.y, y) == 0;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj==this)
-            return true;
-        if (obj==null||obj.getClass()!=this.getClass())
-            return false;
-        Dot dot=(Dot)obj;
-        return this.getX()==dot.getX() && this.getY()==dot.getY();
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 
     @Override
     public String toString() {
-
-        return getX()+", "+getY();
+        return "Dot1{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
     }
+
 }

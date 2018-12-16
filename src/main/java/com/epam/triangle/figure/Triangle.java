@@ -1,14 +1,17 @@
 package com.epam.triangle.figure;
 
+import java.util.Objects;
 
-public class Triangle {
-    private Dot dotA;
-    private Dot dotB;
-    private Dot dotC;
+public class Triangle extends Figure {
     private double sideA;
     private double sideB;
     private double sideC;
 
+    public Triangle(double sideA, double sideB, double sideC) {
+        this.sideA = sideA;
+        this.sideB = sideB;
+        this.sideC = sideC;
+    }
 
     public double getSideA() {
         return sideA;
@@ -34,60 +37,27 @@ public class Triangle {
         this.sideC = sideC;
     }
 
-    public Triangle(){
-
-    }
-
-    public Dot getDotA() {
-        return dotA;
-    }
-
-    public void setDotA(Dot dotA) {
-        this.dotA = dotA;
-    }
-
-    public Dot getDotB() {
-        return dotB;
-    }
-
-    public void setDotB(Dot dotB) {
-        this.dotB = dotB;
-    }
-
-    public Dot getDotC() {
-        return dotC;
-    }
-
-    public void setDotC(Dot dotC) {
-        this.dotC = dotC;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Triangle triangle = (Triangle) o;
+        return Double.compare(triangle.sideA, sideA) == 0 &&
+                Double.compare(triangle.sideB, sideB) == 0 &&
+                Double.compare(triangle.sideC, sideC) == 0;
     }
 
     @Override
     public int hashCode() {
-        return (int)getDotA().getX()>>>2+(int)getDotA().getY()>>>4+
-                (int)getDotB().getX()*3+(int)getDotB().getY()/2+
-                (int)getDotC().getX()+(int)getDotC().getY();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-       if (obj==this)
-           return true;
-       if (obj==null||obj.getClass()!=this.getClass())
-           return false;
-       Triangle tr=(Triangle)obj;
-       return  (tr.getDotA().equals(this.getDotA()) && tr.getDotB().equals(this.getDotB())
-               && tr.getDotC().equals(this.getDotC()));
-
+        return Objects.hash(sideA, sideB, sideC);
     }
 
     @Override
     public String toString() {
-        return "Dot A is in "+getDotA().getX()+", "+getDotA().getY()+"\n" +
-                "Dot B is in "+getDotB().getX()+", "+getDotB().getY()+"\n" +
-                "Dot C is in "+getDotC().getX()+", "+getDotC().getY()+"\n" +
-                "The length of AB is "+getSideA()+"\n" +
-                "The length of BC is "+getSideB()+"\n" +
-                "The length of AC is "+getSideC()+"\n";
+        return "Triangle{" +
+                "sideA=" + sideA +
+                ", sideB=" + sideB +
+                ", sideC=" + sideC +
+                '}';
     }
 }

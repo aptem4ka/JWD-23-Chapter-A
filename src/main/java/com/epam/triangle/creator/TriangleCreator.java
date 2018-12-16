@@ -1,76 +1,65 @@
 package com.epam.triangle.creator;
+
+import com.epam.triangle.calculation.Calculator;
+import com.epam.triangle.calculation.TriangleChecker;
+import com.epam.triangle.exception.CreatorException;
+import com.epam.triangle.exception.ReaderException;
 import com.epam.triangle.figure.Dot;
+import com.epam.triangle.figure.Figure;
 import com.epam.triangle.figure.Triangle;
-import com.epam.triangle.validator.CheckTriangle;
+import com.epam.triangle.reader.Reader;
+import com.epam.triangle.reader.ReaderFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.ArrayList;
 
+public class TriangleCreator extends FigureCreator {
+private final String PATTERN="(-?\\d+\\.\\d+)|-?\\d+";
+private ArrayList<String> coordinates;
+private static final Logger logger= LogManager.getLogger(TriangleCreator.class.getName());
 
-public class TriangleCreator {
-
-    private ArrayList<Double> coordinates = new ArrayList<>();
-    private Triangle triangle=new Triangle();
-
-    public Triangle creator() throws NotEnoughCoordinatsException{
-        ArrayList<String> list = Reader.readTxt();
-
-        for (String x : list) {
-            String[] substrings = this.Delimeter(list);
-
-            if (substrings.length == 6) {     //Для треугольника требуется 6 подстрок (3 координаты X и Y)
-                if (CheckTriangle.checkCoordinats(substrings,this))
-                {  createDot();
-                    break;}
-            }
-        }
-if (coordinates.size()<6){  //Если в txt не нашлось 6 корректных координат в строке - треугольник создать нельзя
-throw new NotEnoughCoordinatsException("This txt doesnt content enough correct coordinates to create a triangle");}
-
-    Calculator.setSides(triangle);
-    return triangle;
+    public TriangleCreator(String dataSource) {
+        super(dataSource);
     }
 
-
-    public String[] Delimeter(ArrayList<String> list)
-    {String[] substrings=null;
-        for (String x : list) {
-            String delimeter = " ";
-           substrings = x.split(delimeter);
+    @Override
+    public Figure create() throws CreatorException {
+        Reader reader=ReaderFactory.getInstance()
+                .getReadTriangle(this.dataSource, PATTERN);
+    try {
+        coordinates = reader.getData();
+        }catch (ReaderException e){
+        logger.error("Error due to getting coordinates data");
+        throw new CreatorException(e);
     }
-        return substrings;}
+        Dot[] dots=dotCreator(coordinates);
+        double[] vectors=findVectors(dots);
 
-    private void createDot()
-    {
-        Dot dotA=new Dot();
-        dotA.setX(coordinates.get(0));
-        dotA.setY(coordinates.get(1));
-        Dot dotB=new Dot();
-        dotB.setX(coordinates.get(2));
-        dotB.setY(coordinates.get(3));
-        Dot dotC=new Dot();
-        dotC.setX(coordinates.get(4));
-        dotC.setY(coordinates.get(5));
-
-        createTriangle(dotA,dotB,dotC);
-
-    }
-
-    private void createTriangle(Dot a, Dot b, Dot c) {
-triangle.setDotA(a);
-triangle.setDotB(b);
-triangle.setDotC(c);
-    }
-    public ArrayList<Double> getCoordinates() {
-        return coordinates;
-    }
-
-    public Triangle getTriangle() {
+        Triangle triangle=new Triangle(vectors[0],vectors[1],vectors[2]);
+        TriangleChecker triangleChecker=new TriangleChecker(triangle);
+        if (triangleChecker.isTriangle())
         return triangle;
-    }
-}
+        else throw new CreatorException("This figure is not a triangle");
 
-
-class NotEnoughCoordinatsException extends Exception{
-    public NotEnoughCoordinatsException(String message) {
-        super(message);
     }
+
+    private Dot[] dotCreator(ArrayList<String> coordinates){
+        Dot[] dots=new Dot[3];
+        dots[0]=new Dot(Double.parseDouble(coordinates.get(0)),Double.parseDouble(coordinates.get(1)));
+        dots[1]=new Dot(Double.parseDouble(coordinates.get(2)),Double.parseDouble(coordinates.get(3)));
+        dots[2]=new Dot(Double.parseDouble(coordinates.get(4)),Double.parseDouble(coordinates.get(5)));
+    return dots;
+    }
+
+    private double[] findVectors(Dot[] dots){
+        double[] vectors=new double[3];
+
+        vectors[0]= Calculator.calculateVector(dots[0],dots[1]);
+        vectors[1]= Calculator.calculateVector(dots[1],dots[2]);
+        vectors[2]= Calculator.calculateVector(dots[0],dots[2]);
+
+        return vectors;
+    }
+
 }
