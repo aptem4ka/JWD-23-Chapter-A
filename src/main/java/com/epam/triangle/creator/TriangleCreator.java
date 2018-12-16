@@ -15,7 +15,6 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 
 public class TriangleCreator extends FigureCreator {
-private final String PATTERN="(-?\\d+\\.\\d+)|-?\\d+";
 private ArrayList<String> coordinates;
 private static final Logger logger= LogManager.getLogger(TriangleCreator.class.getName());
 
@@ -26,7 +25,7 @@ private static final Logger logger= LogManager.getLogger(TriangleCreator.class.g
     @Override
     public Figure create() throws CreatorException {
         Reader reader=ReaderFactory.getInstance()
-                .getReadTriangle(this.dataSource, PATTERN);
+                .getReadTriangle(this.dataSource);
     try {
         coordinates = reader.getData();
         }catch (ReaderException e){

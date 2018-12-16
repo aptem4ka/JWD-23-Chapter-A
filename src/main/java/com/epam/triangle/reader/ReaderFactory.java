@@ -10,9 +10,9 @@ public class ReaderFactory {
         return instance;
     }
 
-    public ReadTriangle getReadTriangle(String filepath, String pattern)
+    public ReadTriangle getReadTriangle(String filepath)
     {
-        return new ReadTriangle(filepath,pattern);
+        return new ReadTriangle(filepath);
     }
 
 

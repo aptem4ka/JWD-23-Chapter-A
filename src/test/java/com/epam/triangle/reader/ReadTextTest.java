@@ -11,7 +11,7 @@ public class ReadTextTest {
     @Test
     public void testGetData() throws ReaderException {
         Reader reader= ReaderFactory.getInstance()
-                .getReadTriangle("InputData.txt", "(-?\\d+\\.\\d+)|-?\\d+");
+                .getReadTriangle("InputData.txt");
         ArrayList<String> strings=reader.getData();
         for (String x: strings)
             System.out.println(x);
