@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class ReadTriangle implements Reader {
     String filepath;
     private final String PATTERN="(-?\\d+\\.\\d+)|-?\\d+";
-                                        //"(-?\\d+\\.\\d+)|-?\\d+";
+                                       
 
     final static Logger logger= LogManager.getLogger(ReadTriangle.class.getName());
 
