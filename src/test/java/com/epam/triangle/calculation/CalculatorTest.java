@@ -4,6 +4,7 @@ import com.epam.triangle.creator.FigureCreateManager;
 import com.epam.triangle.creator.FigureCreator;
 import com.epam.triangle.enums.ChooseAction;
 import com.epam.triangle.exception.CreatorException;
+import com.epam.triangle.exception.ReaderException;
 import com.epam.triangle.figure.Figure;
 import com.epam.triangle.figure.Triangle;
 import com.epam.triangle.view.Printer;
@@ -17,7 +18,7 @@ public class CalculatorTest {
 private Triangle triangle;
 
     @BeforeClass
-    public void initTriangle() throws CreatorException {
+    public void initTriangle() throws CreatorException, ReaderException {
         FigureCreateManager figureCreateManager=new FigureCreateManager();
         FigureCreator creator= figureCreateManager.getCreator(ChooseAction.CREATE_TRIANGLE,"InputData.txt");
         triangle=(Triangle)creator.create();

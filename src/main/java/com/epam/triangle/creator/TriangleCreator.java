@@ -23,7 +23,7 @@ private static final Logger logger= LogManager.getLogger(TriangleCreator.class.g
     }
 
     @Override
-    public Figure create() throws CreatorException {
+    public Figure create() throws CreatorException, ReaderException {
         Reader reader=ReaderFactory.getInstance()
                 .getReadTriangle(this.dataSource);
     try {

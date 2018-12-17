@@ -1,5 +1,9 @@
 package com.epam.triangle.reader;
 
+import com.epam.triangle.exception.ReaderException;
+
+import java.io.File;
+
 public class ReaderFactory {
     private static final ReaderFactory instance=new ReaderFactory();
 
@@ -10,9 +14,13 @@ public class ReaderFactory {
         return instance;
     }
 
-    public ReadTriangle getReadTriangle(String filepath)
+    public ReadTriangle getReadTriangle(String filepath) throws ReaderException
     {
-        return new ReadTriangle(filepath);
+        File file=new File(filepath);
+        if (file.exists())
+            return new ReadTriangle(filepath);
+        else throw new ReaderException("File "+filepath+" doesn't exist");
+
     }
 
 
