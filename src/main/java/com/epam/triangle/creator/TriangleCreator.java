@@ -33,9 +33,9 @@ private static final Logger logger= LogManager.getLogger(TriangleCreator.class.g
         throw new CreatorException(e);
     }
         Dot[] dots=dotCreator(coordinates);
-        double[] vectors=findVectors(dots);
+        Triangle triangle=new Triangle(dots[0],dots[1],dots[2]);
+        setTriangleVectors(triangle);
 
-        Triangle triangle=new Triangle(vectors[0],vectors[1],vectors[2]);
         TriangleChecker triangleChecker=new TriangleChecker(triangle);
         if (triangleChecker.isTriangle())
         return triangle;
@@ -51,14 +51,17 @@ private static final Logger logger= LogManager.getLogger(TriangleCreator.class.g
     return dots;
     }
 
-    private double[] findVectors(Dot[] dots){
-        double[] vectors=new double[3];
+    private void setTriangleVectors(Triangle triangle){
+        triangle.setSideA(Calculator.calculateVector(triangle.getA(),triangle.getB()));
+        triangle.setSideB(Calculator.calculateVector(triangle.getB(),triangle.getC()));
+        triangle.setSideC(Calculator.calculateVector(triangle.getA(),triangle.getC()));
+    }
 
-        vectors[0]= Calculator.calculateVector(dots[0],dots[1]);
-        vectors[1]= Calculator.calculateVector(dots[1],dots[2]);
-        vectors[2]= Calculator.calculateVector(dots[0],dots[2]);
-
-        return vectors;
+    private void setTriangleDots(Dot[] dots, Triangle triangle)
+    {
+        triangle.setA(dots[0]);
+        triangle.setB(dots[1]);
+        triangle.setC(dots[2]);
     }
 
 }
