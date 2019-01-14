@@ -1,6 +1,6 @@
 package com.epam.triangle.creator;
 
-import com.epam.triangle.enums.ChooseAction;
+import com.epam.triangle.figure.action.ChooseAction;
 
 public class FigureCreateManager {
 

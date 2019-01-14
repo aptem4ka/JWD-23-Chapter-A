@@ -1,16 +1,21 @@
 package com.epam.triangle.calculation;
 
 import com.epam.triangle.figure.Triangle;
-import com.epam.triangle.view.Printer;
-
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class TriangleChecker {
     private Triangle triangle;
+    private double sideA;
+    private double sideB;
+    private double sideC;
 
     public TriangleChecker(Triangle triangle) {
         this.triangle = triangle;
+        sideA= triangle.getSideA();
+        sideB=triangle.getSideB();
+        sideC=triangle.getSideC();
     }
 
     public boolean isTriangle()
@@ -18,71 +23,46 @@ public class TriangleChecker {
         boolean y=triangle.getSideB()+triangle.getSideC()>triangle.getSideA();
         boolean z=triangle.getSideA()+triangle.getSideC()>triangle.getSideB();
 
-        if (x&&y&&z)
-        {
-            System.out.println("This figure is a triangle");
-            return true;}
-        else {
-            System.out.println("this figure is not a triangle");
-            return false;}
+        return (x&&y&&z);
     }
-
 
     public boolean isIsosceles()
     {
-        double A=triangle.getSideA();
-        double B=triangle.getSideB();
-        double C=triangle.getSideC();
-        if (A==B && A!=C || A==C && A!=B || B==C && B!=A)
-        {
-            Printer.print("This triangle is isosceles");
-            return true;
-        }
-        else {Printer.print("This triangle is not isosceles");
-            return false;}
+        return (sideA==sideB && sideA!=sideC || sideA==sideC && sideA!=sideB
+                || sideB==sideC && sideB!=sideA);
     }
 
     public boolean isEquiangular()
     {
-        double A=triangle.getSideA();
-        double B=triangle.getSideB();
-        double C=triangle.getSideC();
-        if (A==B && A==C)
-        {
-            Printer.print("This triangle is equiangular");
-            return true;
-        }
-        else {Printer.print("This triangle is not equiangular");
-            return false;}
+        return (sideA==sideB && sideA==sideC);
     }
 
-    public String isRightAngled()
-    {
-        Printer.print("The parameters of the triangle are: \n"+triangle.toString());
-        double A=Math.pow(triangle.getSideA(),2);
-        double B=Math.pow(triangle.getSideB(),2);
-        double C=Math.pow(triangle.getSideC(),2);
+    public boolean isAbtuse(){
+        List<Double> squareSides=squaredSides();
+        return (squareSides.get(2)>squareSides.get(1)+squareSides.get(0));
+    }
+
+    public boolean isRightAngled(){
+        List<Double> squareSides=squaredSides();
+        return (squareSides.get(2)==squareSides.get(1)+squareSides.get(0));
+    }
+
+    public boolean isAcute(){
+        List<Double> squareSides=squaredSides();
+        return (squareSides.get(2)<squareSides.get(1)+squareSides.get(0));
+    }
+
+    private List<Double> squaredSides(){
+        double a=Math.pow(sideA,2);
+        double b=Math.pow(sideB,2);
+        double c=Math.pow(sideC,2);
         double max;
 
         ArrayList<Double> list=new ArrayList();
-        list.add(A);
-        list.add(B);
-        list.add(C);
+        list.add(a);
+        list.add(b);
+        list.add(c);
         Collections.sort(list);
-
-        if (list.get(2)>list.get(1)+list.get(0))
-        {Printer.print("This triangle is abtuse");
-            return "abtuse";}
-        else if (list.get(2)==list.get(1)+list.get(0))
-        {Printer.print("This triangle is right angled");
-            return "right";}
-        else if (list.get(2)<list.get(1)+list.get(0))
-        {Printer.print("This triangle is acute");
-            return "acute";}
-            else return null;
-
+        return list;
     }
-
-
-
 }

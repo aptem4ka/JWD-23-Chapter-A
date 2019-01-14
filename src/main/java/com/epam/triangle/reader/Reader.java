@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public interface Reader {
 
-    ArrayList<String> getData() throws ReaderException;
+    ArrayList<String> takeData() throws ReaderException;
 
 
 

@@ -12,7 +12,7 @@ public class ReadTextTest {
     public void testGetData() throws ReaderException {
         Reader reader= ReaderFactory.getInstance()
                 .getReadTriangle("InputData.txt");
-        ArrayList<String> strings=reader.getData();
+        ArrayList<String> strings=reader.takeData();
         for (String x: strings)
             System.out.println(x);
     }

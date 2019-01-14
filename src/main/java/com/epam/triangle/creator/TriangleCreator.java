@@ -24,10 +24,11 @@ private static final Logger logger= LogManager.getLogger(TriangleCreator.class.g
 
     @Override
     public Figure create() throws CreatorException, ReaderException {
+
         Reader reader=ReaderFactory.getInstance()
                 .getReadTriangle(this.dataSource);
     try {
-        coordinates = reader.getData();
+        coordinates = reader.takeData();
         }catch (ReaderException e){
         logger.error("Error due to getting coordinates data");
         throw new CreatorException(e);
