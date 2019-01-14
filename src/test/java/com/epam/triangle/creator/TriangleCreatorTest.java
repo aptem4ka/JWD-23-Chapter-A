@@ -12,8 +12,9 @@ public class TriangleCreatorTest {
 @Test
     public void testTriangleCreator() throws CreatorException, ReaderException {
 
-    FigureCreator creator= new FigureCreateManager().getCreator(ChooseAction.CREATE_TRIANGLE,"InputData.txt");
+    FigureCreator creator= new FigureCreateManager().getCreator(ChooseAction.CREATE_TRIANGLE,"src\\main\\resources\\InputData.txt");
     Figure triangle=creator.create();
+    System.out.println(triangle.toString());
 
 
 }
