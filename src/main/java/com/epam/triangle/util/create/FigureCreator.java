@@ -1,8 +1,8 @@
-package com.epam.triangle.creator;
+package com.epam.triangle.util.create;
 
 import com.epam.triangle.exception.CreatorException;
 import com.epam.triangle.exception.ReaderException;
-import com.epam.triangle.figure.Figure;
+import com.epam.triangle.entity.Figure;
 
 public abstract class FigureCreator {
     protected String dataSource;

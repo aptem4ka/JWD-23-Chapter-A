@@ -1,6 +1,6 @@
 package com.epam.triangle.calculation;
 
-import com.epam.triangle.figure.Triangle;
+import com.epam.triangle.entity.Triangle;
 import org.testng.annotations.DataProvider;
 
 public class CalculationDataProvider {

@@ -1,6 +1,7 @@
-package com.epam.triangle.reader;
+package com.epam.triangle.util.read;
 
 import com.epam.triangle.exception.ReaderException;
+
 
 import java.io.File;
 

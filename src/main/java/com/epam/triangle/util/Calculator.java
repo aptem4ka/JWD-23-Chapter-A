@@ -1,7 +1,7 @@
-package com.epam.triangle.calculation;
+package com.epam.triangle.util;
 
-import com.epam.triangle.figure.Dot;
-import com.epam.triangle.figure.Triangle;
+import com.epam.triangle.entity.Dot;
+import com.epam.triangle.entity.Triangle;
 
 public class Calculator {
 

@@ -1,10 +1,9 @@
 package com.epam.triangle.calculation;
 
-import com.epam.triangle.figure.Triangle;
+import com.epam.triangle.entity.Triangle;
+import com.epam.triangle.validation.TriangleChecker;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import static org.testng.Assert.*;
 
 public class TriangleCheckerTest {
 

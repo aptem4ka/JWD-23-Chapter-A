@@ -6,10 +6,10 @@
         </Console>
     </Appenders>
     <Loggers>
-        <Logger name="com.epam.triangle.creator.TriangleCreator" level="error" additivity="false">
+        <Logger name="com.epam.triangle.util.creator.TriangleCreator" level="error" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
-        <Logger name="com.epam.triangle.reader.ReadTriangle" level="Error" additivity="false">
+        <Logger name="com.epam.triangle.util.reader.ReadTriangle" level="Error" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
         <Root level="info">

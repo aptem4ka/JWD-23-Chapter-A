@@ -1,6 +1,6 @@
-package com.epam.triangle.calculation;
+package com.epam.triangle.validation;
 
-import com.epam.triangle.figure.Triangle;
+import com.epam.triangle.entity.Triangle;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

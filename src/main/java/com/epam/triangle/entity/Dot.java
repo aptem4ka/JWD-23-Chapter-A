@@ -1,4 +1,4 @@
-package com.epam.triangle.figure;
+package com.epam.triangle.entity;
 
 import java.util.Objects;
 

@@ -1,6 +1,8 @@
-package com.epam.triangle.creator;
+package com.epam.triangle.util.create;
 
-import com.epam.triangle.figure.action.ChooseAction;
+
+import com.epam.triangle.entity.action.ChooseAction;
+
 
 public class FigureCreateManager {
 
@@ -9,9 +11,10 @@ public class FigureCreateManager {
         if (action==ChooseAction.CREATE_TRIANGLE)
             creator=new TriangleCreator(dataSource);
 
-    //other figure creators
+        //other entity creators
 
-    return creator;
+        return creator;
     }
 
 }
+

@@ -1,6 +1,6 @@
-package com.epam.triangle.reader;
+package com.epam.triangle.util.read;
 
-import com.epam.triangle.figure.action.ChooseAction;
+import com.epam.triangle.entity.action.ChooseAction;
 import com.epam.triangle.exception.ReaderException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -48,7 +48,7 @@ public class ReadTriangle implements Reader {
         }
         if (rightCoordinats.size()==6)
             return rightCoordinats;
-        else {logger.error("Not enough data to create a figure");
+        else {logger.error("Not enough data to create a entity");
             throw new ReaderException();
         }
     }
@@ -66,4 +66,4 @@ public class ReadTriangle implements Reader {
             }
         }
     }
-    }
+}
